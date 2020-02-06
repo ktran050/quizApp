@@ -70,3 +70,10 @@ body {
     text-align: center;
     clear: right;
 }
+
+.placeholder {
+    height: 400px;
+    width: 400px;
+    background: black;
+    margin: 0 auto;
+}
