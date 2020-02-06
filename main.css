@@ -3,15 +3,49 @@
   text-align: center;
   padding: 0;
   margin: 0;
-  font-size: 25px;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+@media screen and (max-width: 599px){
+	*{
+		font-size: 15px;
+	}
+	.placeholder {
+		height: 200px;
+		width: 200px;
+		background: black;
+		margin: 0 auto;
+	}
+	.counter{
+		align-self: center;
+	}
+	.sub-btn {
+		float: none;
+	}
+}
+@media screen and (min-width: 600px){
+	*{
+		font-size: 25px;
+	}
+	.placeholder {
+		height: 400px;
+		width: 400px;
+		background: black;
+		margin: 0 auto;
+	}
+	.counter{
+		align-self: flex-end;
+	}
+	.sub-btn {
+		float: right;
+	}
 }
 
 fieldset {
     border: none;
-}
-
-h1 {
-  font-size: 2em;
 }
 
 button:hover,
@@ -20,23 +54,22 @@ button:focus {
   color: white;
 }
 
-.sub-btn {
-  float: right;
+.counter {
+	padding-top: 12.5px;
+	width: 100px;
+	height: 50px;
+	border: 2px solid black;
+	/* background-color: #006e99; */
+	/* color: white; */
 }
 
-.counter {
-  padding-top: 12.5px;
-  margin: 0;
-  float: right;
-  width: 100px;
-  height: 50px;
-  border: 2px solid black;
-  /* background-color: #006e99; */
-  /* color: white; */
-}
 
 .main {
-  margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+
+  margin: 20px auto;
   padding: 50px;
   width: 70%;
   min-height: 100%;
@@ -50,15 +83,8 @@ body {
 
 .question {
   text-align: center;
-  clear: right;
 }
 
-.placeholder {
-  height: 400px;
-  width: 400px;
-  background: black;
-  margin: 0 auto;
-}
 
 
 /* button{
