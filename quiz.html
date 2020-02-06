@@ -19,29 +19,28 @@
 
       <form>
         <div class="counter">0 /5</div>
-        <label for="question1" required>
-          <section>
-            <div class="question">Question 1: Which attraction is not part of Adventureland?</div>
-            <br />
+        <fieldset class="question" required>
+          <legend>Question 1: Which attraction is not part of Adventureland? </legend>
             <img
-              src="https://homepages.inf.ed.ac.uk/rbf/HIPR2/images/stp2fur1.gif"
-              class="placeholder"
-              alt="placeholder image"
-            />
-          </section>
+            src="https://homepages.inf.ed.ac.uk/rbf/HIPR2/images/stp2fur1.gif"
+            class="placeholder"
+            alt="placeholder image"
+            /><br />
 
-          <section>
-            <div class="answers">
-              <button>Indiana Jones Adventure</button><br />
-              <button>Clayton's Clay Shoot</button><br />
-              <button>Jungle Cruise</button><br />
-              <button>Tarzan's Adventure</button><br />
-              <button>Enchanted Tiki Room</button><br />
-            </div>
-          </section>
+            <input type="radio" name="q1-ans" id="indiana" value="0" checked>
+            <label for="indiana">Indiana Jones Adventure</label><br />
+            <input type="radio" name="q1-ans" id="clay" value="1" >
+            <label for="clay">Clayton's Clay Shoot</label><br />
+            <input type="radio" name="q1-ans" id="jungle" value="2" >
+            <label for="jungle">Jungle Cruise</label><br />
+            <input type="radio" name="q1-ans" id="tarzan" value="3" >
+            <label for="tarzan">Tarzan's Adventure</label><br />
+            <input type="radio" name="q1-ans" id="tiki" value="4" >
+            <label for="tiki">Enchanted Tiki Room</label><br />
 
-          <button class="sub-btn">Submit</button><br />
-        </label>
+          </legend>
+        </fieldset>
+        <button class="sub-btn">Submit</button><br />
       </form>
     </main>
 

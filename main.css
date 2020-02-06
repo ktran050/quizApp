@@ -6,6 +6,10 @@
   font-size: 25px;
 }
 
+fieldset {
+    border: none;
+}
+
 h1 {
   font-size: 2em;
 }
