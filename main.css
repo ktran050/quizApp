@@ -20,8 +20,8 @@ h1 {
 } */
 
 button:hover, button:focus {
-    background-color: white;
-    color: #006e99;
+    background-color: black;
+    color: white;
 }
 
 .sub-btn {
