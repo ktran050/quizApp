@@ -4,44 +4,14 @@
   padding: 0;
   margin: 0;
 }
-
-h1 {
-	font-size: 2em;
-}
-
 @media screen and (max-width: 599px){
 	*{
 		font-size: 15px;
 	}
-	.placeholder {
-		height: 200px;
-		width: 200px;
-		background: black;
-		margin: 0 auto;
-	}
-	.counter{
-		align-self: center;
-	}
-	.sub-btn {
-		float: none;
-	}
 }
-@media screen and (min-width: 600px){
-	*{
-		font-size: 25px;
-	}
-	.placeholder {
-		height: 400px;
-		width: 400px;
-		background: black;
-		margin: 0 auto;
-	}
-	.counter{
-		align-self: flex-end;
-	}
-	.sub-btn {
-		float: right;
-	}
+
+h1 {
+	font-size: 2em;
 }
 
 fieldset {
@@ -85,7 +55,39 @@ body {
   text-align: center;
 }
 
+@media screen and (max-width: 599px){
+	.placeholder {
+		height: 200px;
+		width: 200px;
+		background: black;
+		margin: 0 auto;
+	}
+	.counter{
+		align-self: center;
+	}
+	.sub-btn {
+		float: none;
+	}
+}
 
+
+@media screen and (min-width: 600px){
+	*{
+		font-size: 25px;
+	}
+	.placeholder {
+		height: 400px;
+		width: 400px;
+		background: black;
+		margin: 0 auto;
+	}
+	.counter{
+		align-self: flex-end;
+	}
+	.sub-btn {
+		float: right;
+	}
+}
 
 /* button{
     background-color: #006e99;
