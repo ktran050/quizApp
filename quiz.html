@@ -17,35 +17,16 @@
         <h1>How well do you know Disneyland?</h1>
       </header>
 
-      <div class="counter">0/ 5</div>
+      <div class= "counter">Score: 0</div>
 
-      <form>
-        <fieldset class="question" required>
-          <legend>Question 1: Which attraction is not part of Adventureland? </legend>
-            <img
-            src="https://homepages.inf.ed.ac.uk/rbf/HIPR2/images/stp2fur1.gif"
-            class="placeholder"
-            alt="placeholder image"
-            /><br />
-
-            <input type="radio" name="q1-ans" id="indiana" value="0" checked>
-            <label for="indiana">Indiana Jones Adventure</label><br />
-            <input type="radio" name="q1-ans" id="clay" value="1" >
-            <label for="clay">Clayton's Clay Shoot</label><br />
-            <input type="radio" name="q1-ans" id="jungle" value="2" >
-            <label for="jungle">Jungle Cruise</label><br />
-            <input type="radio" name="q1-ans" id="tarzan" value="3" >
-            <label for="tarzan">Tarzan's Adventure</label><br />
-            <input type="radio" name="q1-ans" id="tiki" value="4" >
-            <label for="tiki">Enchanted Tiki Room</label><br />
-
-          </legend>
-        </fieldset>
-        <button class="sub-btn">Submit</button><br />
+      <form id="js-quiz-form">
+        <div class="question">
+        </div>
+        <button type="submit" class="sub-btn" id="js-answer-submit">Submit</button><br />
       </form>
-      
-      <a href="resultTrue.html"><button class="-btn">Submit true</button></a>
-      <a href="resultFalse.html"><button class="-btn">Submit false</button></a>
+
     </main>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
