@@ -75,7 +75,7 @@ function renderFinalResult() {
 }
 
 function handleAnswerSubmit() {
-  $('#js-quiz-form').submit(function(event) {
+  $('#js-quiz-form').find('.check-button').on('click', (function(event) {
     event.preventDefault();
     let currentQuestion = STORE[currentQuestionIndex];
     let answerIndex = currentQuestion.answerIndex;
@@ -110,7 +110,7 @@ function handleAnswerSubmit() {
       // display feedback incorrect
     }
     $('.question').append(feedback);
-  });
+  }));
 }
 
 function handleNextQuestion(){
