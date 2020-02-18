@@ -60,7 +60,7 @@ function renderQuestion() {
     ${answersList}
 
   </fieldset>
-  <button type="submit" class="check-btn">Check Answer</button>
+  <button type="submit" class="check-button">Check Answer</button>
   `;
   $('.question').html(questionHTML);
   console.log('question rendered');
@@ -80,49 +80,52 @@ function handleAnswerSubmit() {
     let currentQuestion = STORE[currentQuestionIndex];
     let answerIndex = currentQuestion.answerIndex;
     let feedback = '';
-    console.log('value: ' + $(`input[name="${currentQuestionIndex}-ans"]:checked`).val());
-    console.log(`answerIndex: ${currentQuestion.answers[answerIndex]}`);
+    let buttonText = 'Next';
+
+    $('.check-button').addClass('next-button');
+    $('.check-button').removeClass('check-button');
+    $('.next-button').html(buttonText);
+    
+
     if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
       //  if form answer !=  answer
       console.log('right');
-      let buttonText = 'Next';
       feedback = `
-            <div class="correct feedback">
+            <div class="correct-feedback">
               Correct answer!
             </div>
           `;
-      $('.sub-btn').html(buttonText);
-      $('.question').append(feedback);
       ++currentScore;
-      ++currentQuestionIndex;
       console.log(`currentScore: ${currentScore}`);
       renderCounter();
-      renderQuestion();
       // display feedback correct
+
     } else {
       console.log('wrong');
+      feedback = `
+      <div class="incorrect-feedback">
+        Incorrect answer!
+      </div>
+    `;
       // display feedback incorrect
     }
+    $('.question').append(feedback);
   });
 }
 
-// function handleAnswerSubmit() {
-//   $('#js-quiz-form').submit(function(event) {
-//     event.preventDefault();
-//     $('button').hasClass('check-btn'){
-//       console.log('check')
-//     }// if questions page
-//       // if true
-//       // else
-//     // if results page
-//   });
-// }
-
+function handleNextQuestion(){
+  $('#js-quiz-form').submit(function(event) {
+    event.preventDefault();
+    ++currentQuestionIndex;
+    // renderQuestion();
+  });
+}
 
 function handleQuiz() {
   renderForm();
   renderCounter();
   handleAnswerSubmit();
+  handleNextQuestion();
 }
 
 handleQuiz();
