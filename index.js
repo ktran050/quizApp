@@ -21,6 +21,7 @@ const STORE = [
 
 let currentQuestionIndex = 0;
 let currentScore = 0;
+let onQuestion = true;
 
 function renderForm() {
   console.log('form rendered');
@@ -76,6 +77,7 @@ function renderFinalResult() {
 
 function handleAnswerSubmit() {
   $('#js-quiz-form').find('.check-button').on('click', (function(event) {
+    if(onQuestion){
     event.preventDefault();
     let currentQuestion = STORE[currentQuestionIndex];
     let answerIndex = currentQuestion.answerIndex;
@@ -110,15 +112,22 @@ function handleAnswerSubmit() {
       // display feedback incorrect
     }
     $('.question').append(feedback);
-  }));
+  }
+  console.log(onQuestion);
+}));
 }
 
 function handleNextQuestion(){
-  $('#js-quiz-form').submit(function(event) {
+  $('#js-quiz-form').find('button').on('click', (function(event) {
+    if(!onQuestion){
     event.preventDefault();
+    console.log('next!');
     ++currentQuestionIndex;
-    // renderQuestion();
-  });
+    renderQuestion();
+  }
+  onQuestion = !onQuestion; // this shouldn't work
+  console.log(onQuestion);
+}));
 }
 
 function handleQuiz() {
@@ -140,6 +149,7 @@ handleQuiz();
 // lock submits
 // load next question
 // recognize we are finished with the quiz and display results screen
+// ask about the listening for class changes using jquery?
 
 
 // mentor notes:
