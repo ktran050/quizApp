@@ -77,65 +77,67 @@ function renderFinalResult() {
 }
 
 function handleAnswerSubmit() {
-  $('#js-quiz-form').find('.check-button').on('click', (function(event) {
-    if(onQuestion){
-    event.preventDefault();
-    disableAnswers();
-    let currentQuestion = STORE[currentQuestionIndex];
-    let answerIndex = currentQuestion.answerIndex;
-    // let feedback = '';
-    let buttonText = 'Next';
+  $('#js-quiz-form')
+    .find('.check-button')
+    .on('click', function(event) {
+      if (onQuestion) {
+        event.preventDefault();
+        disableAnswers();
+        let currentQuestion = STORE[currentQuestionIndex];
+        let answerIndex = currentQuestion.answerIndex;
+        // let feedback = '';
+        let buttonText = 'Next';
 
-    $('.check-button').addClass('next-button');
-    $('.check-button').removeClass('check-button');
-    $('.next-button').html(buttonText);
-    
+        $('.check-button').addClass('next-button');
+        $('.check-button').removeClass('check-button');
+        $('.next-button').html(buttonText);
 
-    if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
-      //  if form answer !=  answer
-      console.log('right');
-      // feedback = `
-      //       <div class="correct-feedback">
-      //         Correct answer!
-      //       </div>
-      //     `;
-      alert("Correct answer");
-      ++currentScore;
-      console.log(`currentScore: ${currentScore}`);
-      renderCounter();
-      // display feedback correct
-
-    } else {
-      console.log('wrong');
-      feedback = `
+        if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
+          //  if form answer !=  answer
+          console.log('right');
+          // feedback = `
+          //       <div class="correct-feedback">
+          //         Correct answer!
+          //       </div>
+          //     `;
+          alert('Correct answer');
+          ++currentScore;
+          console.log(`currentScore: ${currentScore}`);
+          renderCounter();
+          // display feedback correct
+        } else {
+          console.log('wrong');
+          feedback = `
       <div class="incorrect-feedback">
         Incorrect answer!
       </div>
     `;
-      // display feedback incorrect
-      alert("Incorrect answer");
-    }
-    // $('.question').append(feedback);
-  }
-  console.log(onQuestion);
-}));
+          // display feedback incorrect
+          alert('Incorrect answer');
+        }
+        // $('.question').append(feedback);
+      }
+      console.log(onQuestion);
+    });
 }
 
-function handleNextQuestion(){
-  $('#js-quiz-form').find('button').on('click', (function(event) {
-    if(!onQuestion){
-    event.preventDefault();
-    console.log('next!');
-    ++currentQuestionIndex;
-    renderQuestion();
-  }
-  onQuestion = !onQuestion; // this shouldn't work
-  console.log(onQuestion);
-}));
+function handleNextQuestion() {
+  $('#js-quiz-form')
+    .find('button')
+    .on('click', function(event) {
+      if (!onQuestion) {
+        event.preventDefault();
+        console.log('next!');
+        ++currentQuestionIndex;
+        renderQuestion();
+      }
+      onQuestion = !onQuestion; // this shouldn't work
+      console.log(onQuestion);
+    });
 }
 
-function disableAnswers(){
-  $(`.js-radio`).prop("disabled", true);
+function disableAnswers() {
+  $(`.js-radio`).prop('disabled', true);
 }
 
 function handleQuiz() {
@@ -160,7 +162,6 @@ handleQuiz();
 // ask about the listening for class changes using jquery?
 // ask about disabling radios with jquery
 
-
 // mentor notes:
 // cut down on abbreviations
-// cut redundant data ex. storing the correct answer again in the questions object rather than just the index that the answer is already in 
+// cut redundant data ex. storing the correct answer again in the questions object rather than just the index that the answer is already in
