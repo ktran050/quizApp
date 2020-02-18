@@ -161,10 +161,11 @@ $(handleQuiz());
 // load next question
 // recognize we are finished with the quiz and display results screen
 // ask about the listening for class changes using jquery?
-// ask about disabling radios with jquery
 
 // mentor notes:
 // cut down on abbreviations
 // cut redundant data ex. storing the correct answer again in the questions object rather than just the index that the answer is already in
 
 // use form submit rather than click for accessability
+// make sure to use document ready
+// maybe make the quiz start a form for accessability
