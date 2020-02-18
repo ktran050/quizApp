@@ -33,6 +33,7 @@ function prepareAnswers() {
   STORE[currentQuestionIndex].answers.forEach(function(item) {
     options += `
       <input type="radio"
+      class = "js-radio"
       name="${currentQuestionIndex}-ans" id="${item}"
       value="${item}">
       <label for="indiana">${item}</label><br />`;
@@ -79,9 +80,10 @@ function handleAnswerSubmit() {
   $('#js-quiz-form').find('.check-button').on('click', (function(event) {
     if(onQuestion){
     event.preventDefault();
+    disableAnswers();
     let currentQuestion = STORE[currentQuestionIndex];
     let answerIndex = currentQuestion.answerIndex;
-    let feedback = '';
+    // let feedback = '';
     let buttonText = 'Next';
 
     $('.check-button').addClass('next-button');
@@ -92,11 +94,12 @@ function handleAnswerSubmit() {
     if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
       //  if form answer !=  answer
       console.log('right');
-      feedback = `
-            <div class="correct-feedback">
-              Correct answer!
-            </div>
-          `;
+      // feedback = `
+      //       <div class="correct-feedback">
+      //         Correct answer!
+      //       </div>
+      //     `;
+      alert("Correct answer");
       ++currentScore;
       console.log(`currentScore: ${currentScore}`);
       renderCounter();
@@ -110,8 +113,9 @@ function handleAnswerSubmit() {
       </div>
     `;
       // display feedback incorrect
+      alert("Incorrect answer");
     }
-    $('.question').append(feedback);
+    // $('.question').append(feedback);
   }
   console.log(onQuestion);
 }));
@@ -128,6 +132,10 @@ function handleNextQuestion(){
   onQuestion = !onQuestion; // this shouldn't work
   console.log(onQuestion);
 }));
+}
+
+function disableAnswers(){
+  $(`.js-radio`).prop("disabled", true);
 }
 
 function handleQuiz() {
@@ -150,6 +158,7 @@ handleQuiz();
 // load next question
 // recognize we are finished with the quiz and display results screen
 // ask about the listening for class changes using jquery?
+// ask about disabling radios with jquery
 
 
 // mentor notes:
