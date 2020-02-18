@@ -141,13 +141,14 @@ function disableAnswers() {
 }
 
 function handleQuiz() {
+  console.log("handling quiz");
   renderForm();
   renderCounter();
   handleAnswerSubmit();
   handleNextQuestion();
 }
 
-handleQuiz();
+$(handleQuiz());
 
 // Wasted time forgetting to link jquery
 // wasted time forgettting the . in '.someClass'
@@ -165,3 +166,5 @@ handleQuiz();
 // mentor notes:
 // cut down on abbreviations
 // cut redundant data ex. storing the correct answer again in the questions object rather than just the index that the answer is already in
+
+// use form submit rather than click for accessability
