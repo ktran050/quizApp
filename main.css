@@ -89,6 +89,11 @@ body {
 	}
 }
 
+.feedback {
+	/* border: 2px solid black; */
+	clear: right;
+}
+
 /* button{
     background-color: #006e99;
     color: white;
