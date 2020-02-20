@@ -79,24 +79,22 @@ function prepareAnswers() {
 function prepareAnswers(e) {
   let options = '';
   STORE[currentQuestionIndex].answers.forEach(function(item) {
-    if(item != STORE[currentQuestionIndex].answers[e] || (e != STORE[currentQuestionIndex].answerIndex)){
-    options += `
+    if (item != STORE[currentQuestionIndex].answers[e] || e != STORE[currentQuestionIndex].answerIndex) {
+      options += `
       <input type="radio"
       class = "js-radio"
       name="${currentQuestionIndex}-ans" id="${item}"
       value="${item}" required>
       <label for="${item}" id="${item}-label">${item}</label><br />`;
-  }
-  else{
-    options += `
+    } else {
+      options += `
     <input type="radio"
     class = "js-radio js-correct-answer"
     name="${currentQuestionIndex}-ans" id="${item}"
     value="${item}" required>
     <label for="${item}" id="${item}-label" class="js-correct-answer">${item}</label><br />`;
-  }
-}
-  );
+    }
+  });
   return options;
 }
 
@@ -131,7 +129,7 @@ function renderQuestion(e) {
   const answersList = prepareAnswers(e);
   const questionHTML = `
   <fieldset required>
-    <legend>Question ${currentQuestionIndex + 1} / ${STORE.length}:<br />
+    <legend>Question ${currentQuestionIndex + 1} / ${STORE.length}:
     ${STORE[currentQuestionIndex].question} </legend>
     <img
     src="${STORE[currentQuestionIndex].img}"
@@ -142,6 +140,8 @@ function renderQuestion(e) {
     ${answersList}
 
   </fieldset>
+  <div class="js-feedback"></div>
+
   <button type="submit" class="check-button">Check Answer</button>
   `;
   $('.content').html(questionHTML);
@@ -187,7 +187,7 @@ function handleAnswerSubmit() {
     $('.check-button').addClass('next-button');
     $('.check-button').removeClass('check-button');
     $('.next-button').html(buttonText);
-    $('.content').append(feedback);
+    $('.js-feedback').html(feedback);
   }
 }
 
@@ -243,36 +243,3 @@ function handleQuiz() {
 }
 
 $(handleQuiz());
-
-// Wasted time forgetting to link jquery
-// wasted time forgettting the . in '.someClass'
-// DO NOT LISTEN for multiples for the same event
-// For ids with spaces in them you can references them using element[id=""]
-
-// TODO: value of each item in prepareAnswers is just the first string ~~~~~~~~~~~~~~~~~
-// check submitted answer ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// display feedback based on the answer ~~~~~~~~~~~~~~~~~~~~~~~~
-// increment based on the answer ~~~~~~~~~~~~~~~~~~~~~~
-// lock submits ~~~~~~~~~~~~~~~~~~~~
-// load next question ~~~~~~~~~~~~~~~~~~~~~~~~~
-// recognize we are finished with the quiz and display results screen ~~~~~~~~~~~~~~~~~~~~~~~`
-// ask about the listening for class changes using jquery?
-
-// Require the input ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Add all questions ~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Finalize images for the questions
-// Maybe add answer images 
-// Highlight correct answers ~~~~~~~~~~~~~~~~~~~~~~
-// Highlight incorrectly chosen answers
-// Recognize the questions array is at its end ~~~~~~~~~~~~`
-// Display a results screen ~~~~~~~~~~~~~~~~~~~``
-// Add a replay button ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Maybe add results page image
-
-// mentor notes:
-// cut down on abbreviations
-// cut redundant data ex. storing the correct answer again in the questions object rather than just the index that the answer is already in
-
-// use form submit rather than click for accessability
-// make sure to use document ready
-// maybe make the quiz start a form for accessability
