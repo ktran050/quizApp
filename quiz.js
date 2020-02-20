@@ -33,7 +33,6 @@ const STORE = [
 
 let currentQuestionIndex = 0;
 let currentScore = 0;
-let onQuestion = true;
 
 function renderForm() {
   console.log('form rendered');
@@ -47,7 +46,7 @@ function prepareAnswers() {
       <input type="radio"
       class = "js-radio"
       name="${currentQuestionIndex}-ans" id="${item}"
-      value="${item}">
+      value="${item}" required>
       <label for="indiana">${item}</label><br />`;
   });
   return options;
@@ -64,7 +63,7 @@ function renderQuestion() {
   const questionHTML = `
   <fieldset required>
     <legend>Question ${currentQuestionIndex + 1} / 5:<br />
-    ${STORE[currentQuestionIndex].content} </legend>
+    ${STORE[currentQuestionIndex].question} </legend>
     <img
     src="${STORE[currentQuestionIndex].img}"
     class="placeholder"
@@ -89,94 +88,100 @@ function renderFinalResult() {
 }
 
 function handleAnswerSubmit() {
-  $('#js-quiz-form')
-    .submit(
-      function(event) {
-      event.preventDefault();
-      console.log(`button check: ${$('button').hasClass('check-button')}`);
-      if (onQuestion) {
-        console.log('here');
-        disableAnswers();
-        let currentQuestion = STORE[currentQuestionIndex];  // Maybe make this a pointer
-        let answerIndex = currentQuestion.answerIndex;
-        // let feedback = '';
-        let buttonText = 'Next';
+  console.log(`button check: ${$('button').hasClass('check-button')}`);
+  if ($('button').hasClass('check-button')) {
+    disableAnswers();
+    let currentQuestion = STORE[currentQuestionIndex]; // Maybe make this a pointer
+    let answerIndex = currentQuestion.answerIndex;
+    let feedback = '';
+    let buttonText = 'Next';
 
-        $('.check-button').addClass('next-button');
-        $('.check-button').removeClass('check-button');
-        $('.next-button').html(buttonText);
+    $('.check-button').addClass('next-button');
+    $('.check-button').removeClass('check-button');
+    $('.next-button').html(buttonText);
 
-        onQuestion = !onQuestion;
-
-
-        if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
-          //  if form answer !=  answer
-          console.log('answer correct');
-          // feedback = `
-          //       <div class="correct-feedback">
-          //         Correct answer!
-          //       </div>
-          //     `;
-          alert('Correct answer!');
-          ++currentScore;
-          renderCounter();
-          // display feedback correct
-        } else {
-          console.log('answer wrong');
-          alert(`Wrong! The correct answer was: ${currentQuestion.answers[answerIndex]}`);
-    //       feedback = `
-    //   <div class="incorrect-feedback">
-    //     Incorrect answer!
-    //   </div>
-    // `;
-          // display feedback incorrect
-        }
-        // $('.content').append(feedback);
-      }
-    });
+    if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
+      //  if form answer !=  answer
+      console.log('answer correct');
+      feedback = `
+            <div class="correct-feedback">
+              Correct answer!
+            </div>
+          `;
+      ++currentScore;
+      renderCounter();
+      // display feedback correct
+    } else {
+      console.log('answer wrong');
+            feedback = `
+        <div class="incorrect-feedback">
+          Incorrect answer!
+        </div>
+      `;
+      // display feedback incorrect
+    }
+    $('.content').append(feedback);
+  }
 }
 
 function handleNextQuestion() {
-  $('#js-quiz-form')
-    .submit(
-      function(event) {
-      event.preventDefault();
-      if (!onQuestion) {
-        console.log('next question handled');
-        ++currentQuestionIndex;
-        if(currentQuestionIndex != STORE.length){
-          renderQuestion();
-        }
-        else{
-          renderResultsPage();
-        }
-        onQuestion = !onQuestion;
-      }
-    });
+  if ($('button').hasClass('next-button')) {
+    console.log('next question handled');
+    ++currentQuestionIndex;
+    if (currentQuestionIndex != STORE.length) {
+      renderQuestion();
+      console.log('handling next');
+    } else {
+      renderResultsPage();
+    }
+  }
 }
 
 function disableAnswers() {
   $(`.js-radio`).prop('disabled', true);
 }
 
-function renderResultsPage {
-  let resultsHtml =
-  // set html
-  // apply html to the form
+function renderResultsPage() {
+  let resultsHtml = `<h1>Congratulations! You scored: ${currentScore} out of ${STORE.length}</h1>
+  <button class="try-button">Try again?</button>`; // set html
+
+  $('.counter').remove();
+  $('.content').html(resultsHtml); // apply html to the form
+}
+
+function handleReplay() {
+  currentQuestionIndex = 0;
+  currentScore = 0;
+  renderQuestion();
+}
+
+function handleSubmit() {
+  $('#js-quiz-form').submit(function(event) {
+    event.preventDefault();
+    if ($('button').hasClass('check-button')) {
+      handleAnswerSubmit();
+    }
+    else if ($('button').hasClass('next-button')) {
+      handleNextQuestion();
+    }
+    else if ($('button').hasClass('try-button')) {
+      handleReplay();
+    }
+  });
 }
 
 function handleQuiz() {
   console.log('handling quiz');
   renderForm();
   renderCounter();
-  handleAnswerSubmit();
-  handleNextQuestion();
+  handleSubmit();
 }
 
 $(handleQuiz());
 
 // Wasted time forgetting to link jquery
 // wasted time forgettting the . in '.someClass'
+// DO NOT LISTEN for multiples for the same event
 
 // TODO: value of each item in prepareAnswers is just the first string ~~~~~~~~~~~~~~~~~
 // check submitted answer ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -187,14 +192,15 @@ $(handleQuiz());
 // recognize we are finished with the quiz and display results screen
 // ask about the listening for class changes using jquery?
 
-// Require the input
+// Require the input ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Add all questions
 // Finalize images for the questions
 // Maybe add answer images
 // Highlight correct answers
 // Highlight incorrectly chosen answers
-// Recognize the questions array is at its end
-// Display a results screen
+// Recognize the questions array is at its end ~~~~~~~~~~~~`
+// Display a results screen ~~~~~~~~~~~~~~~~~~~``
+// Add a replay button ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // mentor notes:
 // cut down on abbreviations
