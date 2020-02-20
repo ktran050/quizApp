@@ -59,7 +59,6 @@ let currentQuestionIndex = 0;
 let currentScore = 0;
 
 function renderForm() {
-  console.log('form rendered');
   renderQuestion();
 }
 
@@ -101,7 +100,6 @@ function prepareAnswers(e) {
 function renderCounter() {
   let counterHtml = `score: ${currentScore}`;
   $('.counter').html(counterHtml);
-  console.log('counter rendered');
 }
 
 function renderQuestion() {
@@ -122,7 +120,6 @@ function renderQuestion() {
   <button type="submit" class="check-button">Check Answer</button>
   `;
   $('.content').html(questionHTML);
-  console.log('question rendered');
 }
 
 function renderQuestion(e) {
@@ -145,15 +142,6 @@ function renderQuestion(e) {
   <button type="submit" class="check-button">Check Answer</button>
   `;
   $('.content').html(questionHTML);
-  console.log('question rendered');
-}
-
-function renderResult() {
-  console.log('result rendered');
-}
-
-function renderFinalResult() {
-  console.log('final result rendered');
 }
 
 function handleAnswerSubmit() {
@@ -164,7 +152,6 @@ function handleAnswerSubmit() {
     let answerBoxHtml = '';
 
     if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === correctAnswerString) {
-      console.log('answer correct');
       feedback = `
             <div class="correct-feedback">
               Correct answer!
@@ -193,11 +180,9 @@ function handleAnswerSubmit() {
 
 function handleNextQuestion() {
   if ($('button').hasClass('next-button')) {
-    console.log('next question handled');
     ++currentQuestionIndex;
     if (currentQuestionIndex != STORE.length) {
       renderQuestion();
-      console.log('handling next');
     } else {
       renderResultsPage();
     }
@@ -236,7 +221,6 @@ function handleSubmit() {
 }
 
 function handleQuiz() {
-  console.log('handling quiz');
   renderForm();
   renderCounter();
   handleSubmit();
