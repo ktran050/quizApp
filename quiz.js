@@ -3,7 +3,7 @@ const STORE = [
     question: 'Which attraction is not part of Adventureland?',
     answers: [
       'Indiana Jones Adventure',
-      "Clayton's Clay Shoot",
+      "Peyton's Planet Pusher",
       'Jungle Cruise',
       "Tarzan's Adventure",
       'Enchanted Tiki Room'
@@ -55,7 +55,7 @@ function prepareAnswers() {
 function prepareAnswers(e) {
   let options = '';
   STORE[currentQuestionIndex].answers.forEach(function(item) {
-    if(item != STORE[currentQuestionIndex].answers[e]){
+    if(item != STORE[currentQuestionIndex].answers[e] || (e != STORE[currentQuestionIndex].answerIndex)){
     options += `
       <input type="radio"
       class = "js-radio"
@@ -139,13 +139,6 @@ function handleAnswerSubmit() {
     let buttonText = 'Next';
     let answerBoxHtml = '';
 
-    $('.check-button').addClass('next-button');
-    $('.check-button').removeClass('check-button');
-    $('.next-button').html(buttonText);
-    
-    renderQuestion(STORE[currentQuestionIndex].answerIndex);
-    disableAnswers();
-
     if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === correctAnswerString) {
       console.log('answer correct');
       feedback = `
@@ -165,6 +158,11 @@ function handleAnswerSubmit() {
       `;
       // display feedback incorrect
     }
+    renderQuestion(STORE[currentQuestionIndex].answerIndex);
+    disableAnswers();
+    $('.check-button').addClass('next-button');
+    $('.check-button').removeClass('check-button');
+    $('.next-button').html(buttonText);
     $('.content').append(feedback);
   }
 }
@@ -239,8 +237,8 @@ $(handleQuiz());
 // Require the input ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Add all questions
 // Finalize images for the questions
-// Maybe add answer images
-// Highlight correct answers
+// Maybe add answer images 
+// Highlight correct answers ~~~~~~~~~~~~~~~~~~~~~~
 // Highlight incorrectly chosen answers
 // Recognize the questions array is at its end ~~~~~~~~~~~~`
 // Display a results screen ~~~~~~~~~~~~~~~~~~~``
