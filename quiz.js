@@ -146,28 +146,25 @@ function renderQuestion(e) {
 
 function handleAnswerSubmit() {
   if ($('button').hasClass('check-button')) {
+    // check-button means we are on a question display screen
     let correctAnswerString = STORE[currentQuestionIndex].answers[STORE[currentQuestionIndex].answerIndex]; // Maybe make this a pointer
     let feedback = '';
     let buttonText = 'Next';
-    let answerBoxHtml = '';
 
     if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === correctAnswerString) {
+      // if the answer is correct
       feedback = `
-            <div class="correct-feedback">
-              Correct answer!
-            </div>
-          `;
+      <div class="correct-feedback">
+        Correct answer!
+      </div>`;
       ++currentScore;
       renderCounter();
-      // display feedback correct
     } else {
       console.log('answer wrong');
       feedback = `
-        <div class="incorrect-feedback">
-          Wrong answer! The correct answer was: ${correctAnswerString}
-        </div>
-      `;
-      // display feedback incorrect
+      <div class="incorrect-feedback">
+        Wrong answer! The correct answer was: ${correctAnswerString}
+      </div>`;
     }
     renderQuestion(STORE[currentQuestionIndex].answerIndex);
     disableAnswers();
@@ -180,10 +177,12 @@ function handleAnswerSubmit() {
 
 function handleNextQuestion() {
   if ($('button').hasClass('next-button')) {
+    // next-button would mean we are on the results screen
     ++currentQuestionIndex;
     if (currentQuestionIndex != STORE.length) {
       renderQuestion();
     } else {
+      // only reached at the end of the quiz
       renderResultsPage();
     }
   }
@@ -194,9 +193,12 @@ function disableAnswers() {
 }
 
 function renderResultsPage() {
-  let resultsHtml = `<h1>Congratulations! You scored: ${currentScore} out of ${STORE.length}</h1>
-  <button class="try-button">Try again?</button>`; // set html
-
+  let resultsHtml = `
+  <header>
+  <h1>Congratulations! You scored: ${currentScore} out of ${STORE.length}</h1>
+  <button class="try-button">Try again?</button>
+  </header>
+  `; // set html
   $('.counter').remove();
   $('.content').html(resultsHtml); // apply html to the form
 }
