@@ -47,8 +47,32 @@ function prepareAnswers() {
       class = "js-radio"
       name="${currentQuestionIndex}-ans" id="${item}"
       value="${item}" required>
-      <label for="indiana">${item}</label><br />`;
+      <label for="${item}" id="${item}-label">${item}</label><br />`;
   });
+  return options;
+}
+
+function prepareAnswers(e) {
+  let options = '';
+  STORE[currentQuestionIndex].answers.forEach(function(item) {
+    if(item != STORE[currentQuestionIndex].answers[e]){
+    options += `
+      <input type="radio"
+      class = "js-radio"
+      name="${currentQuestionIndex}-ans" id="${item}"
+      value="${item}" required>
+      <label for="${item}" id="${item}-label">${item}</label><br />`;
+  }
+  else{
+    options += `
+    <input type="radio"
+    class = "js-radio js-correct-answer"
+    name="${currentQuestionIndex}-ans" id="${item}"
+    value="${item}" required>
+    <label for="${item}" id="${item}-label" class="js-correct-answer">${item}</label><br />`;
+  }
+}
+  );
   return options;
 }
 
@@ -79,6 +103,27 @@ function renderQuestion() {
   console.log('question rendered');
 }
 
+function renderQuestion(e) {
+  const answersList = prepareAnswers(e);
+  const questionHTML = `
+  <fieldset required>
+    <legend>Question ${currentQuestionIndex + 1} / 5:<br />
+    ${STORE[currentQuestionIndex].question} </legend>
+    <img
+    src="${STORE[currentQuestionIndex].img}"
+    class="placeholder"
+    alt="placeholder image"
+    /><br />
+
+    ${answersList}
+
+  </fieldset>
+  <button type="submit" class="check-button">Check Answer</button>
+  `;
+  $('.content').html(questionHTML);
+  console.log('question rendered');
+}
+
 function renderResult() {
   console.log('result rendered');
 }
@@ -88,20 +133,20 @@ function renderFinalResult() {
 }
 
 function handleAnswerSubmit() {
-  console.log(`button check: ${$('button').hasClass('check-button')}`);
   if ($('button').hasClass('check-button')) {
-    disableAnswers();
-    let currentQuestion = STORE[currentQuestionIndex]; // Maybe make this a pointer
-    let answerIndex = currentQuestion.answerIndex;
+    let correctAnswerString = STORE[currentQuestionIndex].answers[STORE[currentQuestionIndex].answerIndex]; // Maybe make this a pointer
     let feedback = '';
     let buttonText = 'Next';
+    let answerBoxHtml = '';
 
     $('.check-button').addClass('next-button');
     $('.check-button').removeClass('check-button');
     $('.next-button').html(buttonText);
+    
+    renderQuestion(STORE[currentQuestionIndex].answerIndex);
+    disableAnswers();
 
-    if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
-      //  if form answer !=  answer
+    if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === correctAnswerString) {
       console.log('answer correct');
       feedback = `
             <div class="correct-feedback">
@@ -113,9 +158,9 @@ function handleAnswerSubmit() {
       // display feedback correct
     } else {
       console.log('answer wrong');
-            feedback = `
+      feedback = `
         <div class="incorrect-feedback">
-          Incorrect answer!
+          Wrong answer! The correct answer was: ${correctAnswerString}
         </div>
       `;
       // display feedback incorrect
@@ -160,11 +205,9 @@ function handleSubmit() {
     event.preventDefault();
     if ($('button').hasClass('check-button')) {
       handleAnswerSubmit();
-    }
-    else if ($('button').hasClass('next-button')) {
+    } else if ($('button').hasClass('next-button')) {
       handleNextQuestion();
-    }
-    else if ($('button').hasClass('try-button')) {
+    } else if ($('button').hasClass('try-button')) {
       handleReplay();
     }
   });
@@ -182,6 +225,7 @@ $(handleQuiz());
 // Wasted time forgetting to link jquery
 // wasted time forgettting the . in '.someClass'
 // DO NOT LISTEN for multiples for the same event
+// For ids with spaces in them you can references them using element[id=""]
 
 // TODO: value of each item in prepareAnswers is just the first string ~~~~~~~~~~~~~~~~~
 // check submitted answer ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

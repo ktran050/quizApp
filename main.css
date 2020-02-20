@@ -94,6 +94,11 @@ body {
 	clear: right;
 }
 
+.js-correct-answer{
+	border: 10px black solid;
+	font-size: 50px;
+}
+
 /* button{
     background-color: #006e99;
     color: white;
