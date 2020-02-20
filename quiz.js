@@ -28,6 +28,30 @@ const STORE = [
     ],
     img: 'https://wdwnt.com/wp-content/uploads/2019/01/unnamed-24-990x556.jpg',
     answerIndex: 4
+  },
+  {
+    question: `Which attraction is a part of FantasyLand?`,
+    answers: [
+      'Matterhorn',
+      'Bambi’s Playground',
+      'Peter Pan’s Pirate Plunder',
+      'Snow White and the Seven Mice',
+      'Haunted Mansion'
+    ],
+    img: 'https://wdwnt.com/wp-content/uploads/2019/01/unnamed-24-990x556.jpg',
+    answerIndex: 2
+  },
+  {
+    question: `Which attraction is no longer at Disneyland, but instead at Disneyworld?`,
+    answers: [
+      'Tower of Terror',
+      'Indiana Jones',
+      'Mickey’s Magic Mile',
+      'Star Wars: Jar Jar Pod Racing',
+      'Marvel’s Avengers Assemble'
+    ],
+    img: 'https://i.ytimg.com/vi/PVNue9Mle4A/maxresdefault.jpg',
+    answerIndex: 0
   }
 ];
 
@@ -86,7 +110,7 @@ function renderQuestion() {
   const answersList = prepareAnswers();
   const questionHTML = `
   <fieldset required>
-    <legend>Question ${currentQuestionIndex + 1} / 5:<br />
+    <legend>Question ${currentQuestionIndex + 1} / ${STORE.length}:<br />
     ${STORE[currentQuestionIndex].question} </legend>
     <img
     src="${STORE[currentQuestionIndex].img}"
@@ -107,7 +131,7 @@ function renderQuestion(e) {
   const answersList = prepareAnswers(e);
   const questionHTML = `
   <fieldset required>
-    <legend>Question ${currentQuestionIndex + 1} / 5:<br />
+    <legend>Question ${currentQuestionIndex + 1} / ${STORE.length}:<br />
     ${STORE[currentQuestionIndex].question} </legend>
     <img
     src="${STORE[currentQuestionIndex].img}"
@@ -231,11 +255,11 @@ $(handleQuiz());
 // increment based on the answer ~~~~~~~~~~~~~~~~~~~~~~
 // lock submits ~~~~~~~~~~~~~~~~~~~~
 // load next question ~~~~~~~~~~~~~~~~~~~~~~~~~
-// recognize we are finished with the quiz and display results screen
+// recognize we are finished with the quiz and display results screen ~~~~~~~~~~~~~~~~~~~~~~~`
 // ask about the listening for class changes using jquery?
 
 // Require the input ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Add all questions
+// Add all questions ~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Finalize images for the questions
 // Maybe add answer images 
 // Highlight correct answers ~~~~~~~~~~~~~~~~~~~~~~
@@ -243,6 +267,7 @@ $(handleQuiz());
 // Recognize the questions array is at its end ~~~~~~~~~~~~`
 // Display a results screen ~~~~~~~~~~~~~~~~~~~``
 // Add a replay button ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Maybe add results page image
 
 // mentor notes:
 // cut down on abbreviations
