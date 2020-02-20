@@ -16,6 +16,18 @@ const STORE = [
     answers: ['2015', '1920', '1963', '1955', '1986'],
     img: 'https://user-images.githubusercontent.com/9054819/73940503-7a9b5e00-48e3-11ea-8538-1646ac67976e.jpg',
     answerIndex: 3
+  },
+  {
+    question: `What is Disneyland\’s latest attraction?`,
+    answers: [
+      'Guardians of the Galaxy - Mission: BREAKOUT!',
+      'Hyperspace Mountain',
+      `California Screamin\'`,
+      'Pirates of the Carribean',
+      'Star Wars: Rise of the Resistance'
+    ],
+    img: 'https://wdwnt.com/wp-content/uploads/2019/01/unnamed-24-990x556.jpg',
+    answerIndex: 4
   }
 ];
 
@@ -52,7 +64,7 @@ function renderQuestion() {
   const questionHTML = `
   <fieldset required>
     <legend>Question ${currentQuestionIndex + 1} / 5:<br />
-    ${STORE[currentQuestionIndex].question} </legend>
+    ${STORE[currentQuestionIndex].content} </legend>
     <img
     src="${STORE[currentQuestionIndex].img}"
     class="placeholder"
@@ -64,7 +76,7 @@ function renderQuestion() {
   </fieldset>
   <button type="submit" class="check-button">Check Answer</button>
   `;
-  $('.question').html(questionHTML);
+  $('.content').html(questionHTML);
   console.log('question rendered');
 }
 
@@ -78,12 +90,14 @@ function renderFinalResult() {
 
 function handleAnswerSubmit() {
   $('#js-quiz-form')
-    .find('.check-button')
-    .on('click', function(event) {
+    .submit(
+      function(event) {
+      event.preventDefault();
+      console.log(`button check: ${$('button').hasClass('check-button')}`);
       if (onQuestion) {
-        event.preventDefault();
+        console.log('here');
         disableAnswers();
-        let currentQuestion = STORE[currentQuestionIndex];
+        let currentQuestion = STORE[currentQuestionIndex];  // Maybe make this a pointer
         let answerIndex = currentQuestion.answerIndex;
         // let feedback = '';
         let buttonText = 'Next';
@@ -92,47 +106,52 @@ function handleAnswerSubmit() {
         $('.check-button').removeClass('check-button');
         $('.next-button').html(buttonText);
 
+        onQuestion = !onQuestion;
+
+
         if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === currentQuestion.answers[answerIndex]) {
           //  if form answer !=  answer
-          console.log('right');
+          console.log('answer correct');
           // feedback = `
           //       <div class="correct-feedback">
           //         Correct answer!
           //       </div>
           //     `;
-          alert('Correct answer');
+          alert('Correct answer!');
           ++currentScore;
-          console.log(`currentScore: ${currentScore}`);
           renderCounter();
           // display feedback correct
         } else {
-          console.log('wrong');
-          feedback = `
-      <div class="incorrect-feedback">
-        Incorrect answer!
-      </div>
-    `;
+          console.log('answer wrong');
+          alert(`Wrong! The correct answer was: ${currentQuestion.answers[answerIndex]}`);
+    //       feedback = `
+    //   <div class="incorrect-feedback">
+    //     Incorrect answer!
+    //   </div>
+    // `;
           // display feedback incorrect
-          alert('Incorrect answer');
         }
-        // $('.question').append(feedback);
+        // $('.content').append(feedback);
       }
-      console.log(onQuestion);
     });
 }
 
 function handleNextQuestion() {
   $('#js-quiz-form')
-    .find('button')
-    .on('click', function(event) {
+    .submit(
+      function(event) {
+      event.preventDefault();
       if (!onQuestion) {
-        event.preventDefault();
-        console.log('next!');
+        console.log('next question handled');
         ++currentQuestionIndex;
-        renderQuestion();
+        if(currentQuestionIndex != STORE.length){
+          renderQuestion();
+        }
+        else{
+          renderResultsPage();
+        }
+        onQuestion = !onQuestion;
       }
-      onQuestion = !onQuestion; // this shouldn't work
-      console.log(onQuestion);
     });
 }
 
@@ -140,8 +159,14 @@ function disableAnswers() {
   $(`.js-radio`).prop('disabled', true);
 }
 
+function renderResultsPage {
+  let resultsHtml =
+  // set html
+  // apply html to the form
+}
+
 function handleQuiz() {
-  console.log("handling quiz");
+  console.log('handling quiz');
   renderForm();
   renderCounter();
   handleAnswerSubmit();
@@ -157,10 +182,19 @@ $(handleQuiz());
 // check submitted answer ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // display feedback based on the answer ~~~~~~~~~~~~~~~~~~~~~~~~
 // increment based on the answer ~~~~~~~~~~~~~~~~~~~~~~
-// lock submits
-// load next question
+// lock submits ~~~~~~~~~~~~~~~~~~~~
+// load next question ~~~~~~~~~~~~~~~~~~~~~~~~~
 // recognize we are finished with the quiz and display results screen
 // ask about the listening for class changes using jquery?
+
+// Require the input
+// Add all questions
+// Finalize images for the questions
+// Maybe add answer images
+// Highlight correct answers
+// Highlight incorrectly chosen answers
+// Recognize the questions array is at its end
+// Display a results screen
 
 // mentor notes:
 // cut down on abbreviations
