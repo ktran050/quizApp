@@ -56,12 +56,11 @@ input[type='radio'] {
 label {
   display: inline-block;
   width: 60%;
-  height: 50px;
   background: #006e99;
   color: white;
   border: 1px solid black;
   margin: 5px 0;
-  padding: 3px;
+  padding: 5px 0;
   border-radius: 5px;
 }
 
@@ -94,7 +93,7 @@ img {
 .counter {
   display: flex;
   justify-self: flex-end;
-  margin: 5px auto;
+  margin: 10px auto;
   padding: 5px;
   border: 2px solid black;
   background: black;
@@ -107,7 +106,9 @@ img {
 
 .feedback {
   border: 2px solid black;
-  height: 2em;
+  padding: 5px;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .correct {
