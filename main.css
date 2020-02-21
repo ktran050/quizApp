@@ -3,19 +3,42 @@
   text-align: center;
   padding: 0;
   margin: 0;
-}
-@media screen and (max-width: 599px){
-	*{
-		font-size: 15px;
-	}
+  font-size: 15px;
 }
 
+/* Styling applied to elements */
+
 h1 {
-	font-size: 1.5em;
+  font-size: 1.5em;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
 }
 
 fieldset {
-    border: none;
+  border: none;
+  margin: none;
+  padding: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  /* justify-self: center; */
+
+  margin: 10px auto;
+  min-height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 button:hover,
@@ -24,137 +47,91 @@ button:focus {
   color: #006e99;
 }
 
+input[type='radio'] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+label {
+  display: inline-block;
+  width: 300px;
+  background: #006e99;
+  color: white;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+input[type='radio']:checked + label {
+  color: #006e99;
+  background: white;
+}
+
+button {
+  background-color: #006e99;
+  color: white;
+  border-radius: 4px;
+  border: solid 2px #006e99;
+  padding: 15px;
+  margin: 5px;
+}
+
+legend {
+  font-size: 1.2em;
+  margin: 10px auto;
+}
+
+img {
+  border-radius: 2px;
+  border: 3px #006e99 solid;
+}
+
+/* Styling applied to classes */
+
 .counter {
-	display: flex;
-	justify-self: flex-end;
-	padding: 7.5px 0 0 7.5px;
-	margin: 0 auto;
-	width: 100px;
-	height: 50px;
-	border: 2px solid black;
-	background-color: #006e99;
-	color: white;
-}
-
-
-.main {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	justify-self: center;
-
-  /* margin: 20px auto; */
-  padding: 50px;
-  width: 70%;
-  min-height: 100%;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px grey solid;
-}
-
-body {
-	display: flex;
-	justify-content: space-around;
+  display: flex;
+  justify-self: flex-end;
+  margin: 5px auto;
+  padding: 5px;
+  border: 2px solid black;
+  background: black;
+  color: white;
 }
 
 .question {
   text-align: center;
 }
 
-@media screen and (max-width: 599px){
-	.placeholder {
-		height: 200px;
-		width: 200px;
-		background: black;
-		margin: 0 auto;
-	}
-	.counter{
-		align-self: center;
-	}
-	.sub-btn {
-		float: none;
-	}
-}
-
-
-@media screen and (min-width: 600px){
-	*{
-		font-size: 25px;
-	}
-	.placeholder {
-		height: 400px;
-		width: 400px;
-		background: black;
-		margin: 0 auto;
-	}
-	.counter{
-		align-self: flex-end;
-	}
-	.sub-btn {
-		float: right;
-	}
+.img {
+  height: 200px;
+  width: 200px;
+  background: black;
+  margin: 0 auto;
 }
 
 .feedback {
-	/* border: 2px solid black; */
-	clear: right;
+  /* border: 2px solid black; */
+  clear: right;
 }
 
-.js-correct-answer{
-	border: 3px black solid;
-	background: green;
+.js-correct-answer {
+  border: 3px black solid;
+  background: green;
 }
 
-input[type="radio"] {
-	opacity: 0;
-	position: fixed;
-	width: 0;
-}
+.background {
+  background: center fixed no-repeat
+    url('https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/2/1280/720/75/dam/disneyland/3-day-ticket-offer/hero-video/DIQB8032000H-disneyland-resort-scope-campaign-kids-video.jpg');
+  background-size: cover;
 
-label {
-	display: inline-block;
-	width: 300px;
-	background: #006e99;
-	color: white;
-	border: 1px solid black;
-	padding: 5px;
-	margin: 5px;
-	border-radius: 5px;
-}
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
 
-input[type="radio"]:checked + label {
-	color: #006e99;
-	background: white;
-}
-
-form{
-	display: flex;
-	flex-direction: column;
-}
-
-button{
-    background-color: #006e99;
-    color: white;
-    border-radius: 4px;
-    border: solid 2px #006e99;
-    padding: 15px;
-    margin: 5px;
-}
-
-legend {
-	font-size: 1.2em;
-	margin: 10px auto;
-}
-
-.background{
-    background: center fixed no-repeat url("https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/2/1280/720/75/dam/disneyland/3-day-ticket-offer/hero-video/DIQB8032000H-disneyland-resort-scope-campaign-kids-video.jpg");
-    background-size: cover;
-
-    padding: 0;
-    margin: 0;
-    position: fixed;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-
-    filter: blur(4px);
+  filter: blur(10px);
 }
