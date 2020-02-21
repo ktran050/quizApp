@@ -72,7 +72,7 @@ function prepareAnswers() {
       value="${item}" required>
       <label for="${item}" id="${item}-label">${item}</label><br />`;
   });
-  options = `<div class=""> ${options} </div>`;
+  options = `<div class="answer-container"> ${options} </div>`;
   return options;
 }
 
@@ -95,6 +95,7 @@ function prepareAnswers(e) {
     <label for="${item}" id="${item}-label" class="js-correct-answer">${item}</label><br />`;
     }
   });
+  options = `<div class="answer-container"> ${options} </div>`;
   return options;
 }
 
