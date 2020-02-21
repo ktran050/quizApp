@@ -165,7 +165,6 @@ function handleAnswerSubmit() {
       ++currentScore;
       renderCounter();
     } else {
-      console.log('answer wrong');
       feedback = `
       <div class="feedback incorrect">
         Incorrect! You chose ${chosenAnswer}.  The correct answer was: ${correctAnswerString}
@@ -201,8 +200,8 @@ function renderResultsPage() {
   let resultsHtml = `
   <header>
   <h1>Congratulations! You scored: ${currentScore} out of ${STORE.length}</h1>
-  <button class="try-button">Try again?</button>
   </header>
+  <button class="try-button">Try again?</button>
   `; // set html
   $('.counter').remove();
   $('.content').html(resultsHtml); // apply html to the form
