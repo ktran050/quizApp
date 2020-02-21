@@ -13,7 +13,7 @@ const STORE = [
   },
   {
     question: 'When was Disneyland first built?',
-    answers: ['2015', '1920', '1963', '1955', '1986'],
+    answers: ['2015', '1920', '1963', '1955'],
     img: 'https://user-images.githubusercontent.com/9054819/73940503-7a9b5e00-48e3-11ea-8538-1646ac67976e.jpg',
     answerIndex: 3
   },
@@ -48,7 +48,12 @@ const STORE = [
       'Indiana Jones',
       'Mickey’s Magic Mile',
       'Star Wars: Jar Jar Pod Racing',
-      'Marvel’s Avengers Assemble'
+      'Marvel’s Avengers Assemble',
+      'Autotopia',
+      'Mad Tea Party',
+      "Donald's boat",
+      'Sailing Ship Columbia',
+      'Disney Railroad'
     ],
     img: 'https://i.ytimg.com/vi/PVNue9Mle4A/maxresdefault.jpg',
     answerIndex: 0
