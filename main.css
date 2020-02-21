@@ -43,8 +43,8 @@ form {
 
 button:hover,
 button:focus {
-  background-color: white;
-  color: #006e99;
+  background-color: black;
+  color: white;
 }
 
 input[type='radio'] {
@@ -55,12 +55,13 @@ input[type='radio'] {
 
 label {
   display: inline-block;
-  width: 300px;
+  width: 60%;
+  height: 50px;
   background: #006e99;
   color: white;
   border: 1px solid black;
-  padding: 5px;
-  margin: 5px;
+  margin: 5px 0;
+  padding: 3px;
   border-radius: 5px;
 }
 
@@ -70,8 +71,6 @@ input[type='radio']:checked + label {
 }
 
 button {
-  background-color: #006e99;
-  color: white;
   border-radius: 4px;
   border: solid 2px #006e99;
   padding: 15px;
@@ -84,8 +83,10 @@ legend {
 }
 
 img {
-  border-radius: 2px;
-  border: 3px #006e99 solid;
+  border: 1px #006e99 black;
+  height: 150px;
+  width: 60%;
+  margin: 0 auto;
 }
 
 /* Styling applied to classes */
@@ -104,20 +105,20 @@ img {
   text-align: center;
 }
 
-.img {
-  height: 200px;
-  width: 200px;
-  background: black;
-  margin: 0 auto;
+.feedback {
+  border: 2px solid black;
+  height: 2em;
 }
 
-.feedback {
-  /* border: 2px solid black; */
-  clear: right;
+.correct {
+  background: green;
+}
+
+.incorrect {
+  background: red;
 }
 
 .js-correct-answer {
-  border: 3px black solid;
   background: green;
 }
 

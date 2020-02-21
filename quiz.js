@@ -154,7 +154,7 @@ function handleAnswerSubmit() {
     if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === correctAnswerString) {
       // if the answer is correct
       feedback = `
-      <div class="correct-feedback">
+      <div class="feedback correct">
         Correct answer!
       </div>`;
       ++currentScore;
@@ -162,7 +162,7 @@ function handleAnswerSubmit() {
     } else {
       console.log('answer wrong');
       feedback = `
-      <div class="incorrect-feedback">
+      <div class="feedback incorrect">
         Wrong answer! The correct answer was: ${correctAnswerString}
       </div>`;
     }
