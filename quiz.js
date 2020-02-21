@@ -72,6 +72,7 @@ function prepareAnswers() {
       value="${item}" required>
       <label for="${item}" id="${item}-label">${item}</label><br />`;
   });
+  options = `<div class=""> ${options} </div>`;
   return options;
 }
 
@@ -128,13 +129,15 @@ function renderQuestion(e) {
   <fieldset required>
     <legend>Question ${currentQuestionIndex + 1} / ${STORE.length}:
     ${STORE[currentQuestionIndex].question} </legend>
-    <img
-    src="${STORE[currentQuestionIndex].img}"
-    class="img"
-    alt="placeholder image"
-    /><br />
+    <div class="img-answer-container">
+      <img
+      src="${STORE[currentQuestionIndex].img}"
+      class="img"
+      alt="placeholder image"
+      /><br />
 
-    ${answersList}
+      ${answersList}
+    </div>
 
   </fieldset>
   <div class="js-feedback"></div>

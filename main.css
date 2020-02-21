@@ -64,7 +64,8 @@ label {
   border-radius: 5px;
 }
 
-input[type='radio']:checked + label {
+input[type='radio']:checked + label,
+label:hover {
   color: #006e99;
   background: white;
 }
@@ -88,9 +89,7 @@ img {
   margin: 0 auto;
 }
 
-/* Styling applied to classes */
-
-.counter {
+@media (screen-width) /* Styling applied to classes */ .counter {
   display: flex;
   justify-self: flex-end;
   margin: 10px auto;
@@ -136,4 +135,12 @@ img {
   width: 100%;
 
   filter: blur(10px);
+}
+
+.img-answer-container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
