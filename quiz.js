@@ -110,7 +110,7 @@ function renderQuestion() {
     ${STORE[currentQuestionIndex].question} </legend>
     <img
     src="${STORE[currentQuestionIndex].img}"
-    class="placeholder"
+    class="img"
     alt="placeholder image"
     /><br />
 
@@ -130,7 +130,7 @@ function renderQuestion(e) {
     ${STORE[currentQuestionIndex].question} </legend>
     <img
     src="${STORE[currentQuestionIndex].img}"
-    class="placeholder"
+    class="img"
     alt="placeholder image"
     /><br />
 
