@@ -148,10 +148,11 @@ function handleAnswerSubmit() {
   if ($('button').hasClass('check-button')) {
     // check-button means we are on a question display screen
     let correctAnswerString = STORE[currentQuestionIndex].answers[STORE[currentQuestionIndex].answerIndex]; // Maybe make this a pointer
+    let chosenAnswer = $(`input[name="${currentQuestionIndex}-ans"]:checked`).val();
     let feedback = '';
     let buttonText = 'Next';
 
-    if ($(`input[name="${currentQuestionIndex}-ans"]:checked`).val() === correctAnswerString) {
+    if (chosenAnswer === correctAnswerString) {
       // if the answer is correct
       feedback = `
       <div class="feedback correct">
@@ -163,7 +164,7 @@ function handleAnswerSubmit() {
       console.log('answer wrong');
       feedback = `
       <div class="feedback incorrect">
-        Wrong answer! The correct answer was: ${correctAnswerString}
+        Incorrect! You chose ${chosenAnswer}.  The correct answer was: ${correctAnswerString}
       </div>`;
     }
     renderQuestion(STORE[currentQuestionIndex].answerIndex);
