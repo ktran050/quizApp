@@ -203,9 +203,15 @@ function disableAnswers() {
 
 function renderResultsPage() {
   let resultsHtml = `
+  <img
+  src="http://www.pngmart.com/files/6/Stitch-PNG-Transparent-HD-Photo.png"
+  class="lone-img"
+  alt="Stitch waves goodbye"
+  >
   <header>
   <h1>Congratulations! You scored: ${currentScore} out of ${STORE.length}</h1>
   </header>
+
   <button class="try-button">Try again?</button>
   `; // set html
   $('.counter').remove();

@@ -107,10 +107,10 @@ legend {
 }
 
 .img {
-  border: 1px solid black;
   height: 150px;
   width: 60%;
   margin: 0 auto;
+  object-fit: cover;
 }
 @media only screen and (min-height: 600px) {
   .img {
@@ -199,5 +199,18 @@ legend {
 @media only screen and (min-width: 800px) {
   .img-answer-container {
     flex-direction: row;
+  }
+}
+
+.long-img {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+}
+
+@media only screen and (min-width: 800px) {
+  .lone-img {
+    height: 500px;
+    width: 500px;
   }
 }
